@@ -9,25 +9,20 @@ from tools.sec_tools import SECTools
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import load_tools
-from langchain_openai import ChatOpenAI
 from langchain_community.llms import Ollama
 import streamlit as st
 
 os.environ["OPENAI_MODEL_NAME"]="gpt-3.5-turbo-0125"
 
-
 # To load gemini (this api is for free: https://makersuite.google.com/app/apikey)
-# api_gemini = os.environ.get("GEMINI_API_KEY")
-# llm = ChatGoogleGenerativeAI(
-#     model="gemini-pro", verbose=True, temperature=0.1, google_api_key=api_gemini #gemini-pro
-# )
-
-# To load a different OpenAI model
-# llm=ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.2), # add this line
+api_gemini = os.environ.get("GEMINI_API_KEY")
+llm = ChatGoogleGenerativeAI(
+    model="gemini-pro", verbose=True, temperature=0.2, google_api_key=api_gemini #gemini-pro
+)
 
 # To Load Local models through Ollama
 # from langchain_community.llms import Ollama
-# llm = Ollama(model="mistral:instruct")
+# llm = Ollama(model= "wizardlm2") #wizardlm2:latest"
 
 # To load Human in the loop (tool for agents if something goes wrong and they need help)
 # human_tools = load_tools(["human"])
@@ -82,7 +77,7 @@ class StockAnalysisAgents():
       strategies that is working for a super important customer.""",
       verbose=True,
       step_callback=streamlit_callback,
-      # llm=llm,
+      llm=llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
@@ -103,7 +98,7 @@ class StockAnalysisAgents():
       important customer""",
       verbose=True,
       step_callback=streamlit_callback,
-      # llm=llm,
+      llm=llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,
@@ -121,11 +116,11 @@ class StockAnalysisAgents():
       and completer investment recommendations""",
       backstory="""You're the most experienced investment advisor
       and you combine various analytical insights to formulate
-      strategic investment advice. you are known to cite data points and statistics from filings in your recommendations.
+      strategic investment advice. you are known to cite data points and statistics from most recent filings in your recommendations.
       You are now working for a super important customer you need to impress.""",
       verbose=True,
       step_callback=streamlit_callback,
-      # llm=llm,
+      llm=llm,
       tools=[
         BrowserTools.scrape_and_summarize_website,
         SearchTools.search_internet,

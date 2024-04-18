@@ -71,7 +71,7 @@ class StockAnalysisTasks():
         Your final answer must be an expanded report that now
         also highlights significant findings from these filings,
         including any red flags or positive indicators for
-        your customer.
+        your customer. Always cite the quarterly report you are referencing. 
         {self.__tip_section()}        
       """),
       agent=agent,
@@ -114,7 +114,7 @@ class StockAnalysisTasks():
         trading activity, and upcoming events like earnings.
 
         Your final answer MUST be a recommendation for your
-        customer. It should be a  super detailed report, providing a 
+        customer. It should be a  super detailed report(including key finance ration from most recent 10-K and 10-Q filings), providing a 
         clear investment stance and strategy with supporting evidence.
         Make it pretty and well formatted for your customer.""",
     )

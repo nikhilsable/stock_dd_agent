@@ -1,17 +1,14 @@
 from langchain.tools import tool
+import os
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
-import sec_parser as sp
 from sec_downloader import Downloader
 from unstructured.partition.html import partition_html
 
 
 # Initialize the downloader with your company name and email
 dl = Downloader("NS", "sample@sample.com")
-
-# from sec_api import QueryApi
-# from unstructured.partition.html import partition_html
 
 class SECTools():
   @tool("Search 10-Q form")
@@ -57,9 +54,16 @@ class SECTools():
         is_separator_regex = False,
     )
     docs = text_splitter.create_documents([content])
+
+    # Initialize the Electra embedder with your API key and project ID
+    api_gemini = os.environ.get("GEMINI_API_KEY")
+    embedder = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_gemini)
+
+    # Create a FAISS retriever using the Electra embeddings
     retriever = FAISS.from_documents(
-      docs, OpenAIEmbeddings()
+        docs, embedder
     ).as_retriever()
+
     answers = retriever.get_relevant_documents(ask, top_k=5)
     answers = "\n\n".join([a.page_content for a in answers])
     return answers
