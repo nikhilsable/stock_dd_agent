@@ -22,7 +22,7 @@ llm = ChatGoogleGenerativeAI(
 
 # To Load Local models through Ollama
 # from langchain_community.llms import Ollama
-# llm = Ollama(model= "wizardlm2") #wizardlm2:latest"
+# llm = Ollama(model="llama3:instruct", num_ctx=8192)
 
 # To load Human in the loop (tool for agents if something goes wrong and they need help)
 # human_tools = load_tools(["human"])

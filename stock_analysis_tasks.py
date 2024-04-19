@@ -75,10 +75,10 @@ class StockAnalysisTasks():
         {self.__tip_section()}        
       """),
       agent=agent,
-      expected_output="""An expanded text report that now
-        also highlights significant findings from these filings,
+      expected_output="""An expanded text report that 
+        highlights key financial statistics/ratios from these filings,
         including any red flags or positive indicators for
-        your customer. Make sure to use the most recent data as much as possible""",
+        your customer.""",
 
     )
 
@@ -104,7 +104,7 @@ class StockAnalysisTasks():
       """),
       agent=agent,
       expected_output="""A comprehensive
-        investment recommendation. 
+        investment recommendation in text format.
         
         You MUST Consider all aspects, including financial
         health, market sentiment, and qualitative data from
@@ -114,9 +114,9 @@ class StockAnalysisTasks():
         trading activity, and upcoming events like earnings.
 
         Your final answer MUST be a recommendation for your
-        customer. It should be a  super detailed report(including key finance ration from most recent 10-K and 10-Q filings), providing a 
+        customer. It should be a  super detailed report(including key finance ratios from most recent 10-K and 10-Q filings), providing a 
         clear investment stance and strategy with supporting evidence.
-        Make it pretty and well formatted for your customer.""",
+        Make the report well formatted for your customer.""",
     )
 
   def __tip_section(self):
