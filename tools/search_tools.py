@@ -7,7 +7,7 @@ from langchain.tools import tool
 
 class SearchTools():
   @tool("Search the internet")
-  def search_internet(query):
+  def search_internet(query: str) -> str:
     """Useful to search the internet 
     about a a given topic and return relevant results"""
     top_result_to_return = 4
@@ -32,7 +32,7 @@ class SearchTools():
     return '\n'.join(string)
 
   @tool("Search news on the internet")
-  def search_news(query):
+  def search_news(query: str) -> str:
     """Useful to search news about a company, stock or any other
     topic and return relevant results"""""
     top_result_to_return = 4

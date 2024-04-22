@@ -9,7 +9,6 @@ from tools.sec_tools import SECTools
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import load_tools
-from langchain_community.llms import Ollama
 import streamlit as st
 
 os.environ["OPENAI_MODEL_NAME"]="gpt-3.5-turbo-0125"
@@ -17,14 +16,14 @@ os.environ["OPENAI_MODEL_NAME"]="gpt-3.5-turbo-0125"
 # To load gemini (this api is for free: https://makersuite.google.com/app/apikey)
 api_gemini = os.environ.get("GEMINI_API_KEY")
 llm = ChatGoogleGenerativeAI(
-    model="gemini-pro", verbose=True, temperature=0.2, google_api_key=api_gemini #gemini-pro
+    model="gemini-pro", verbose=True, temperature=1, google_api_key=api_gemini #gemini-pro
 )
 
 # To Load Local models through Ollama
 # from langchain_community.llms import Ollama
-# llm = Ollama(model="llama3:instruct", num_ctx=8192)
+# llm = Ollama(model="llama3:8b", num_ctx=4096)
 
-# To load Human in the loop (tool for agents if something goes wrong and they need help)
+# To load Human in the loop (tool for agents if something goes wrong and they need help)ß
 # human_tools = load_tools(["human"])
 
 def streamlit_callback(step_output):

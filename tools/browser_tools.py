@@ -15,12 +15,12 @@ mmodal_llm = ChatGoogleGenerativeAI(
 class BrowserTools():
 
   @tool("Scrape website content")
-  def scrape_and_summarize_website(website):
+  def scrape_and_summarize_website(link: str) -> str:
     """Useful to scrape and summarize a website content"""
 
     # "crafty prompt"
     content = mmodal_llm.predict(f"""you are a Principal Researcher. You do amazing research based on the content you are working with. 
-                                 Analyze and summarize the content for {website}, 
+                                 Analyze and summarize the content for {link}, 
                                  make sure to only include the most relevant information from the content in the summary, return only the summary nothing else.""")
 
     return content

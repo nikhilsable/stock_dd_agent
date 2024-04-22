@@ -1,7 +1,7 @@
 import streamlit as st
 from main import analyze_stock
 
-def convert_txt_to_md(text, stock_ticker):
+def convert_txt_to_md(text: str, stock_ticker: str):
     """plain text saved to a .md file.
 
     Args:

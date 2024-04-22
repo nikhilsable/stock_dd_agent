@@ -12,7 +12,7 @@ dl = Downloader("NS", "sample@sample.com")
 
 class SECTools():
   @tool("Search 10-Q form")
-  def search_10q(data):
+  def search_10q(data: str) -> str:
     """
     Useful to search information from the latest 10-Q form for a
     given stock.
@@ -28,7 +28,7 @@ class SECTools():
     return answer
 
   @tool("Search 10-K form")
-  def search_10k(data):
+  def search_10k(data: str) -> str:
 
     """
     Useful to search information from the latest 10-K form for a
@@ -64,6 +64,6 @@ class SECTools():
         docs, embedder
     ).as_retriever()
 
-    answers = retriever.get_relevant_documents(ask, top_k=5)
+    answers = retriever.get_relevant_documents(ask, top_k=4)
     answers = "\n\n".join([a.page_content for a in answers])
     return answers
