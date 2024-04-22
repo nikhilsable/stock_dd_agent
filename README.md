@@ -1,45 +1,53 @@
-Stock Analysis and Investment Recommendations
-Overview
-This project is a fundamental analysis tool for stocks powered by AI. It includes functionalities for analyzing stock information, extracting insights from SEC filings, and providing investment recommendations.
+Certainly! Based on the information provided in the `pyproject.toml` and the context of the project, here's a suggested update for your `README.md` file:
 
-Installation
-Clone the repository:
-  git clone https://github.com/your/repo.git
-  cd repo
-Install dependencies:
-  pip install -r requirements.txt
-Usage
-Run the Streamlit application:
-  streamlit run app.py
-Enter the stock ticker (e.g., AAPL) and click on "Get Analysis" to generate a stock analysis report.
+```markdown
+# Stock Analysis Crew
 
-File Structure
-  main.py: Main script for analyzing stocks.
-  stock_analysis_agents.py: Defines classes for financial analyst and investment advisor roles.
-  app.py: Streamlit application for user interaction and displaying analysis reports.
-  sec_tools.py: Contains tools for searching and extracting information from SEC filings.
+## Overview
+Stock Analysis Crew is a Python application designed to provide investment recommendations powered by AI. It analyzes various stocks and generates reports with insights into financial health, market sentiment, insider trading activity, and upcoming events.
 
-Dependencies
-  Python 3.x
-  Streamlit
-  LangChain
-  Additional dependencies specified in requirements.txt
+## Features
+- Analyze stock performance and financial data from sources like SEC filings and financial APIs.
+- Generate comprehensive investment recommendation reports.
+- Provide insights into insider trading activity and upcoming financial events.
 
-Contributors
-  Add your name here if you have contributed to the project.
+## Installation
+To install Stock Analysis Crew, you need to have Python 3.10 or above. Clone the repository and install the dependencies using Poetry
 
+## Usage
+Run the application using the following command:
 
-Original content/library By [@joaomdmoura](https://x.com/joaomdmoura)
+```bash
+poetry run python app.py
+```
 
-- [CrewAI Framework](#crewai-framework)
+Enter the stock ticker when prompted, and the application will generate the analysis report.
 
-## CrewAI Framework
-CrewAI is designed to facilitate the collaboration of role-playing AI agents. In this example, these agents work together to give a complete stock analysis and investment recommendation
+## Dependencies
+- `crewai`
+- `unstructured`
+- `pyowm`
+- `tools`
+- `wikipedia`
+- `yfinance`
+- `sec-api`
+- `tiktoken`
+- `faiss-cpu`
+- `python-dotenv`
+- `langchain-community`
+- `langchain-core`
+- `openai`
 
-### Advantages of Using Local Models
-- **Privacy**: Local models allow processing of data within your own infrastructure, ensuring data privacy.
-- **Customization**: You can customize the model to better suit the specific needs of your tasks.
-- **Performance**: Depending on your setup, local models can offer performance benefits, especially in terms of latency.
+For a complete list of dependencies, please refer to the `pyproject.toml` file.
 
 ## License
-This project is released under the MIT License.
+This project is released under the MIT License. For more details, see the LICENSE file.
+
+## Disclaimer
+The investment recommendations provided by Stock Analysis Crew are based on AI-generated analysis and are not financial advice. Please consult with a financial advisor before making any investment decisions.
+
+## Contributing
+Contributions to the Stock Analysis Crew are welcome! Please create PR
+
+```
+Original content/library By [@joaomdmoura](https://x.com/joaomdmoura)
