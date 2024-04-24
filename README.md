@@ -1,6 +1,3 @@
-Certainly! Based on the information provided in the `pyproject.toml` and the context of the project, here's a suggested update for your `README.md` file:
-
-```markdown
 # Stock Analysis Crew
 
 ## Overview
@@ -49,5 +46,5 @@ The investment recommendations provided by Stock Analysis Crew are based on AI-g
 ## Contributing
 Contributions to the Stock Analysis Crew are welcome! Please create PR
 
-```
-Original content/library By [@joaomdmoura](https://x.com/joaomdmoura)
+
+NOTE: Original content/library By [@joaomdmoura](https://x.com/joaomdmoura)
