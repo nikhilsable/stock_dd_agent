@@ -11,6 +11,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import load_tools
 import streamlit as st
 
+#Set Default OpenAI Model to GPT-3
 os.environ["OPENAI_MODEL_NAME"]="gpt-3.5-turbo-0125"
 
 # To load gemini (this api is for free: https://makersuite.google.com/app/apikey)

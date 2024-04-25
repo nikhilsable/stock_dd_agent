@@ -45,7 +45,10 @@ class SECTools():
     return answer
 
   def __embedding_search(elements, ask):
+    #  Combine all elements into a single string, separating each element with a newline
     content = "\n".join([str(el) for el in elements])
+
+    # Split the content into chunks of 1000 characters with  an overlap of 150 characters
     text_splitter = CharacterTextSplitter(
         separator = "\n",
         chunk_size = 1000,
@@ -53,17 +56,21 @@ class SECTools():
         length_function = len,
         is_separator_regex = False,
     )
+    # Create documents from the chunks
     docs = text_splitter.create_documents([content])
 
     # Initialize the Electra embedder with your API key and project ID
     api_gemini = os.environ.get("GEMINI_API_KEY")
     embedder = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_gemini)
 
-    # Create a FAISS retriever using the Electra embeddings
+    # Create a FAISS retriever using the Electra embeddings  of the documents
     retriever = FAISS.from_documents(
         docs, embedder
     ).as_retriever()
 
-    answers = retriever.get_relevant_documents(ask, top_k=4)
+    # Get the top 4 most relevant documents to the user's query
+    answers = retriever.get_relevant_documents(ask, top_k= 4)
+    # Combine the content of the relevant documents, separating each document with two newlines
     answers = "\n\n".join([a.page_content for a in answers])
+    # Return the combined content of the relevant documents
     return answers

@@ -1,12 +1,16 @@
 import streamlit as st
+import os
 from main import analyze_stock
+import  base64  # For download button functionality
 
+
+#  Function to convert plain text to markdown and save it to a file
 def convert_txt_to_md(text: str, stock_ticker: str):
-    """plain text saved to a .md file.
+    """Converts plain text to Markdown format and saves it to a  file.
 
     Args:
-        text (str): The plain text content
-        stock_ticker (str): The stock ticker of the output Markdown file (without the .md extension).
+        text (str): The plain text content to be converted.
+        stock_ticker (str): The stock ticker to  be used as the filename (without the .md extension).
     """
     with open(f"{stock_ticker}_stock_dd.md", "w") as f:
         f.write(text)
@@ -46,33 +50,48 @@ def apply_custom_css():
         unsafe_allow_html=True
     )
 
+def get_binary_file_downloader_html(bin_file, file_label='File'):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    bin_str = base64.b64encode(data).decode()
+    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
+    return href
+
 def main():
+    # apply_black_yellow_theme()
     apply_custom_css()
-    
+
     st.title("📚 Fundamental Analyst for Stocks")
-    st.subheader("🤖 Investment Recommendations Powered by AI ")
-    
-    # Input field for stock ticker
-    stock_ticker = st.text_input("Enter stock ticker (e.g., AAPL):")
-    
-    if st.button("Get Analysis"):
+    st.subheader("🤖 Investment Recommendations Powered by AI Agents")
+    st.markdown("---")
+
+    # Get stock ticker
+    stock_ticker = st.text_input(" Enter stock ticker (e.g., AAPL. ETF's not supported yet..):", placeholder="AAPL", value="")  # Placeholder and initial value
+
+    if st.button("Get Recommendation"):
         if stock_ticker:
             with st.status("🤖 **Agents working.. While you wait, check out what they are reviewing.... **", state="running", expanded=True) as status:
                 with st.container(height=500, border=False):
-                    output = analyze_stock(stock_ticker)
-
+                    with st.spinner("Analyzing... 🤖"):
+                        output = analyze_stock(stock_ticker)
                 status.update(label="✅ Report Ready!",
                     state="complete", expanded=False)
-            
-            st.subheader("📈 Here is your Report 📈")
+
+            # Display Recommendation
+            st.subheader("📈 Stock Recommendation 📈")
             st.markdown(output)
-            convert_txt_to_md(output, stock_ticker) 
+
+            # Create and display download button
+            md_filename = f"{stock_ticker}_stock_dd.md"
+            convert_txt_to_md(output, stock_ticker)
+            st.markdown(get_binary_file_downloader_html(md_filename, 'Markdown Report'), unsafe_allow_html=True)
+            # Additional UI elements (examples)
+            st.success("Analysis completed successfully! 🎉")  # Success  message
 
 
 if __name__ == "__main__":
-    st.set_page_config(page_icon="💰", layout="wide")
+    st.set_page_config(page_icon="💰", layout="wide", page_title="Stock Recommender 3000")  # Enhanced page config
     main()
-
 
 
 

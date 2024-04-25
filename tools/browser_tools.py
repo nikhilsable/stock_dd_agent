@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from langchain_google_genai import ChatGoogleGenerativeAI
 api_gemini = os.environ.get("GEMINI_API_KEY")
 mmodal_llm = ChatGoogleGenerativeAI(
-    model="gemini-pro", verbose=True, temperature=0.2, google_api_key=api_gemini
+    model="gemini-pro", verbose=True, temperature=0.7, google_api_key=api_gemini
 )
 
 class BrowserTools():
